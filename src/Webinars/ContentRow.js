@@ -14,12 +14,12 @@ import four from './img/four.jpg'
 import five from './img/five.jpg'
 import six from './img/six.jpg'
 
-const content = [one, two, three, four, five, six]
+const content = [one, two, three, four, five, six] //images from the gapi call
 
 /**
  * @function ContentRow
  */
-const ContentRow = ({ category, setActive }) => {
+const ContentRow = ({ category, setActive, events }) => {
   const getPos = useCallback(e => {
     const pos = e.target.parentElement.getBoundingClientRect()
     setActive({ category, pos })
@@ -57,12 +57,19 @@ const ContentRow = ({ category, setActive }) => {
         <h2>{category}</h2>
 
         <div className="block-wrapper">
-          {content.map(img => (
-            <ContentBlock key={img} img={img}>
+          {/* {content.map(img => ( */}
+          {/* {events[0].attachments !== undefined ? console.log("file Ur: ", events[0].attachments[0].fileUrl) : ''} */}
+          {events.map(event => {
+            // { console.log("attachment: ", event.summary) }
+            return (
+            <ContentBlock  img={event.attachments !== undefined ? event.attachments[0].fileUrl : null}>
               <Icon type="play" />
               <Icon type="info-circle" onClick={getPos} />
-            </ContentBlock>
-          ))}
+              </ContentBlock>
+            )
+          })}
+            
+          {/* ))} */}
         </div>
       </div>
     </div>
