@@ -6,8 +6,7 @@ function ChatRooms() {
   const chatData = React.useContext(ChatContext);
 
   function onClickChatroom(ev) {
-    // chatData.selectChatroom(ev.target.id);
-    chatData.selectClassroom(ev.target.id)
+    chatData.selectChatroom(ev.target.id);
   }
 
   return (
