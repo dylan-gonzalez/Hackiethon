@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChatContext } from '../App.js';
+import { css, /*jsx*/ } from '@emotion/core';
 
 function LoginForm(props) {
   const chatData  = React.useContext(ChatContext);
@@ -31,10 +32,10 @@ function LoginForm(props) {
   }
   else {
     return (
-      <div id="login">
+      <div id="login" css={[LoginCSS]}>
         <div>
           Username: <b>{ chatData.user.username }</b>&nbsp;
-          <button onClick={logout}>Logout</button>
+          <button css={LoginCSS} onClick={logout} class="but">Logout</button>
         </div>
       </div>
     );
@@ -42,3 +43,11 @@ function LoginForm(props) {
 }
 
 export default LoginForm;
+
+const LoginCSS = css`
+  .but {
+    position:fixed;
+    color:red;
+    font-size: 100px;
+  }
+`

@@ -11,7 +11,7 @@ import Button from '../Button'
 const Overview = () => (
   <div css={OverviewCSS}>
     <p>
-      All he wants to do is leave town and start over. But first, he needs to
+      All he wagdo is leave town and start over. But first, he needs to
       deal with his ex, his new roomie and the enemies who want him dead.
     </p>
 
