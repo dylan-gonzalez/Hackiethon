@@ -62,8 +62,9 @@ const ContentBlockCSS = css`
 
   img {
     height: 100%;
-    width: 100%;
+    width: 250px;
     pointer-events: none;
+    border-radius: 0px;
   }
 `
 
