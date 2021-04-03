@@ -9,6 +9,14 @@ from twilio.rest import Client
 from twilio.base.exceptions import TwilioRestException
 
 load_dotenv()
+
+# twilio_account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
+# twilio_api_key_sid = os.environ.get('TWILIO_API_KEY_SID')
+# twilio_api_key_secret = os.environ.get('TWILIO_API_KEY_SECRET')
+
+# token = AccessToken(twilio_account_sid, twilio_api_key_sid,
+#                     twilio_api_key_secret, identity=username)
+
 twilio_client = Client()
 
 app = Flask(__name__)
@@ -83,6 +91,7 @@ def login():
 
     # generate an access token
     twilio_account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
+    print(twilio_account_sid)
     twilio_api_key_sid = os.environ.get('TWILIO_API_KEY_SID')
     twilio_api_key_secret = os.environ.get('TWILIO_API_KEY_SECRET')
     service_sid = conversations[0].chat_service_sid
