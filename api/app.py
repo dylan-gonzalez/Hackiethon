@@ -49,7 +49,7 @@ def delete(name):
     if conversation is None:
         print("Chat room not found")
     else:
-        conversation.deletee()
+        conversation.delete()
 
 
 @app.route("/login", methods=["POST"])

@@ -6,7 +6,12 @@ function ChatRooms() {
   const chatData = React.useContext(ChatContext);
 
   function onClickChatroom(ev) {
+<<<<<<< HEAD
     chatData.selectChatroom(ev.target.id);
+=======
+    // chatData.selectChatroom(ev.target.id);
+    chatData.selectClassroom(ev.target.id)
+>>>>>>> classroom-channels
   }
 
   return (
