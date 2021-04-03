@@ -1,4 +1,7 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
+// import { jsx } from 'theme-ui';
+
 import React, { useCallback } from 'react'
 import { css, jsx } from '@emotion/core'
 import ContentBlock from './ContentBlock'
