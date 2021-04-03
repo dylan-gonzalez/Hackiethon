@@ -115,6 +115,7 @@ export default class App extends Component {
           className="list-group-item"
           href={event.htmlLink}
           target="_blank"
+          rel="noreferrer"
           key={event.id}
         >
           {event.summary}{" "}
@@ -167,6 +168,7 @@ export default class App extends Component {
             className="primary-cta"
             href="https://calendar.google.com/calendar?cid=c3FtMnVkaTFhZGY2ZHM3Z2o5aDgxdHVldDhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"
             target="_blank"
+            rel="noreferrer"
           >
             +
           </a>
