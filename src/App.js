@@ -1,35 +1,103 @@
-import logo from './logo.svg';
+import React, { Fragment, useEffect } from 'react';
+import Conversations from '@twilio/conversations';
+import {
+  Route,
+  NavLink,
+  Switch,
+  HashRouter
+} from "react-router-dom";
+
+import LoginForm from './LoginForm/index.js';
+import ChatRooms from './ChatRooms/index.js';
+import ChatLog from './ChatLog/index.js';
+import ChatInput from './ChatInput/index.js';
+import Sidebar from './Sidebar';
+import UserProfile from './UserProfile';
+import Calendar from './Calendar';
+
 import './App.css';
-import { useEffect, useState } from 'react';
+import Webinars from './Webinars/index.js';
+import Navbar from './Navbar/index.js';
+
+export const ChatContext = React.createContext();
 
 function App() {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [user, setUser] = React.useState({api: null, username: null, chatrooms: [], classrooms: []});
+  const [selectedChatroom, setSelectedChatroom] = React.useState(null);
+  const [showProfile, setShowProfile] = React.useState(false);
 
-  useEffect(() => {
-    fetch("/time").then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
-    })
-  }, []);
+  const chatData = {
+    user: user,
+    selectedChatroom: selectedChatroom,
+
+    login: (_username) => {
+      document.body.style.cursor = 'progress';
+      return fetch('/login', {
+        method: 'POST',
+        body: JSON.stringify({username: _username})
+      }).then(res => res.json()).then(data => {
+        Conversations.create(data.token).then(client => {
+          document.body.style.cursor = 'default';
+          setUser({
+            api: client,
+            username: _username,
+            chatrooms: data.chatrooms,
+          });
+        });
+      }).catch((error) => {
+        document.body.style.cursor = 'default';
+        throw error;
+      });
+    },
+
+    logout: () => {
+      setUser({api: null, username: null, chatrooms: [], classrooms: []});
+      setSelectedChatroom(null);
+    },
+
+    selectChatroom: (sid) => {
+      user.api.getConversationBySid(sid).then(conv => {
+        setSelectedChatroom(conv);
+      });  
+    },
+
+  }
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <ChatContext.Provider value={chatData}>
+        <HashRouter>
+        <Route exact path="/" component={LoginForm} />
 
-        <p>The current time is: {currentTime}</p>
-      </header>
+          <Switch>
+            {chatData.user.username !== null &&
+              <div>
+                <div id="chat">
+                <Route path="/main" render={() =>
+                  <Fragment>
+                    <LoginForm />
+                    <div id="bulk">
+                      <Sidebar />
+                      <div id="chat-stuff">
+                        <ChatLog />
+                        <ChatInput />
+                        
+                      </div>
+                      
+                    </div>
+                  </Fragment>
+              }/>
+              </div>
+              <Route path="/profile" component={UserProfile} />
+              <Route path="/webinars" component={Webinars} />
+              <Route path = "/calendar" component= {Calendar} />
+              </div>
+              }
+          </Switch>
+        </HashRouter>
+      </ChatContext.Provider>
     </div>
+
   );
 }
 
