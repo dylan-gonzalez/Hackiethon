@@ -14,9 +14,9 @@ const Jumbotron = ({ children }) => (
     <div className="synopsis">
       <img src={logo} />
 
-      <p>
-        All he wants to do is leave town and start over. But first, he needs to
-        deal with his ex, his new roomie and the enemies who want him dead.
+      <p class="quote">
+      “He who learns but does not think, is lost! 
+      He who thinks but does not learn, is in great danger.” – Confucius
       </p>
 
       <Button icon="play">Play</Button>
@@ -45,6 +45,11 @@ const JumbotronCSS = css`
 
     img {
       width: 100%;
+    }
+
+    .quote  {
+      background: red;
+      font-size: 23px;
     }
 
    .Icon {

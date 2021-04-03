@@ -3,7 +3,6 @@
 import React, { useState, useEffect, forwardRef } from 'react'
 import { css, /*jsx*/ } from '@emotion/core';
 import { jsx } from '@emotion/react';
-import netflixLogo from './img/netflix-logo.png'
 import Icon from './Icon'
 
 const leftLinks = ['Home', 'TV Shows', 'Movies', 'Latest', 'My List']
@@ -32,7 +31,8 @@ const Navbar = forwardRef((props, ref) => {
         NavbarCSS,
         scrolled
           ? css`
-              background-color: rgb(20, 20, 20);
+              // background-color: rgb(20, 20, 20);
+              background-color: rgb(1000, 20, 20);
               background-image: linear-gradient(
                 to bottom,
                 rgba(0, 0, 0, 0.7) 10%,
@@ -46,14 +46,15 @@ const Navbar = forwardRef((props, ref) => {
     >
       <ul>
         <li>
-          <a href="/">
-            <img height="75" src={netflixLogo} />
+          <a href="/#/webinars" class="nav-title">
+            <h2>Seminars</h2>
           </a>
+          
         </li>
 
         {leftLinks.map(link => (
           <li key={link}>
-            <a href="/">{link}</a>
+            <a href="/#/webinars">{link}</a>
           </li>
         ))}
       </ul>
@@ -72,13 +73,17 @@ const Navbar = forwardRef((props, ref) => {
 
 const NavbarCSS = css`
   position: static;
+  position: relative;
   height: 68px;
   z-index: 99;
   width: 100%;
   padding: 0 25px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  .nav-title {
+    font-size: 30px;
+  }
   ul {
     display: flex;
     align-items: center;
