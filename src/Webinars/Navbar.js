@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React, { useState, useEffect, forwardRef } from 'react'
-import { css, /*jsx*/ } from '@emotion/core';
+import { css, /*jsx*/ } from '@emotion/react';
 import { jsx } from '@emotion/react';
 import netflixLogo from './img/netflix-logo.png'
 import Icon from './Icon'

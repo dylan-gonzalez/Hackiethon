@@ -2,7 +2,7 @@
 
 /** @jsx jsx */
 import React, { useState, useEffect } from 'react'
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/react'
 import DetailPaneNav from './DetailPaneNav'
 import Overview from './Overview'
 import Episodes from './Episodes'

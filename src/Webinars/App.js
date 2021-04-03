@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createRef } from 'react'
-import { Global, css } from '@emotion/core'
+import { Global, css } from '@emotion/react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Jumbotron from './Jumbotron'

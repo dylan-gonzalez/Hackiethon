@@ -2,7 +2,7 @@
 
 /** @jsx jsx */
 import React from 'react'
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/react'
 import ContentBlock from '../ContentBlock'
 import Icon from '../Icon'
 
