@@ -26,6 +26,7 @@ const ContentBlock = ({ children, img }) => {
       {img === hovered && <div className="content">{children}</div>}
       <img src={img} />
     </div>
+    
   )
 }
 
@@ -48,6 +49,7 @@ const ContentBlockCSS = css`
 
     .Icon {
       font-size: 32px;
+
     }
 
     .Icon:first-of-type {

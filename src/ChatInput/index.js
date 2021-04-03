@@ -22,7 +22,7 @@ function ChatInput() {
 
   return (
     <div id="chat-input">
-      <div></div>
+      {/* <div></div> */}
       <div>Say something:&nbsp;</div>
       <input type="text" ref={input} onKeyUp={onSubmit} />
     </div>

@@ -2,6 +2,8 @@ import React from 'react';
 import { ChatContext } from '../App.js';
 import { css, /*jsx*/ } from '@emotion/core';
 
+import './LoginForm.css';
+
 function LoginForm(props) {
   const chatData  = React.useContext(ChatContext);
   const userInput = React.useRef();
@@ -19,7 +21,9 @@ function LoginForm(props) {
 
   if (chatData.user.username === null) {
     return (
+      
       <div id="login">
+        <h1>Twilio Conversations API Demo</h1>
         <div>
           Username:&nbsp;
           <input type="text" ref={userInput} onKeyUp={login} autoFocus />
@@ -32,11 +36,21 @@ function LoginForm(props) {
   }
   else {
     return (
+<<<<<<< HEAD
+      <div id="login">
+        <h1>Twilio Conversations API Demo</h1>
+
+        <div>
+          Username: <b>{chatData.user.username}</b>&nbsp;
+          {/* {props.history.location.pathname === "/webinars" ? '' : <button onClick={logout}>Logout</button>} */}
+          <button onClick={logout}>Logout</button>
+=======
       <div id="login" css={[LoginCSS]}>
         <div>
           Username: <b>{chatData.user.username}</b>&nbsp;
           {props.history.location.pathname === "/webinars" ? '' : <button onClick={logout}>Logout</button>}
 
+>>>>>>> 7f879169726edc00d989f4aaa54de7780352c070
         </div>
       </div>
     );

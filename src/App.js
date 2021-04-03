@@ -3,6 +3,7 @@ import Conversations from '@twilio/conversations';
 import {
   Route,
   NavLink,
+  Switch,
   HashRouter
 } from "react-router-dom";
 
@@ -16,6 +17,7 @@ import UserProfile from './UserProfile';
 
 import './App.css';
 import Webinars from './Webinars/index.js';
+import Navbar from './Navbar/index.js';
 
 export const ChatContext = React.createContext();
 
@@ -63,37 +65,35 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Twilio Conversations API Demo</h1>
-      {/* <ChatContext.Provider value={chatData}>
-        <LoginForm />
-        {chatData.user.username !== null &&
-          <div id="chat">
-          <Sidebar/>
-          <ChatLog />
-          <ChatInput />
-
-          </div>
-        }
-      </ChatContext.Provider> */}
       <ChatContext.Provider value={chatData}>
         <HashRouter>
-          <Route path = "/" component = {LoginForm} />
-          {chatData.user.username !== null &&
-            <div>
-              <div id="chat">
-              <Route path="/main" render={() =>
-                    <Fragment>
-                      <Sidebar/>
-                      <ChatLog />
-                      <ChatInput />
-                    </Fragment>
-            }/>
-            </div>
-            <Route path="/profile" component={UserProfile} />
-            <Route path="/webinars" component={Webinars} />
-            {/* <Route path = "/calendar" component= {Calendar} /> */}
-            </div>
-          }
+        <Route exact path="/" component={LoginForm} />
+
+          <Switch>
+            {chatData.user.username !== null &&
+              <div>
+                <div id="chat">
+                <Route path="/main" render={() =>
+                  <Fragment>
+                    <LoginForm />
+                    <div id="bulk">
+                      <Sidebar />
+                      <div id="chat-stuff">
+                        <ChatLog />
+                        <ChatInput />
+                        
+                      </div>
+                      
+                    </div>
+                  </Fragment>
+              }/>
+              </div>
+              <Route path="/profile" component={UserProfile} />
+              <Route path="/webinars" component={Webinars} />
+              <Route path = "/calendar" component= {Calendar} />
+              </div>
+              }
+          </Switch>
         </HashRouter>
       </ChatContext.Provider>
     </div>
