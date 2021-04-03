@@ -6,6 +6,7 @@
   flex-direction: row;
   position: absolute;
   width: 100%;
+  text-align: left;
 }
 
 #chat-input div:first-child {
