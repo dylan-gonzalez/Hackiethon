@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChatContext } from '../App.js';
+import { css, /*jsx*/ } from '@emotion/core';
 
 import './LoginForm.css';
 
@@ -35,6 +36,7 @@ function LoginForm(props) {
   }
   else {
     return (
+<<<<<<< HEAD
       <div id="login">
         <h1>Twilio Conversations API Demo</h1>
 
@@ -42,6 +44,13 @@ function LoginForm(props) {
           Username: <b>{chatData.user.username}</b>&nbsp;
           {/* {props.history.location.pathname === "/webinars" ? '' : <button onClick={logout}>Logout</button>} */}
           <button onClick={logout}>Logout</button>
+=======
+      <div id="login" css={[LoginCSS]}>
+        <div>
+          Username: <b>{chatData.user.username}</b>&nbsp;
+          {props.history.location.pathname === "/webinars" ? '' : <button onClick={logout}>Logout</button>}
+
+>>>>>>> 7f879169726edc00d989f4aaa54de7780352c070
         </div>
       </div>
     );
@@ -49,3 +58,11 @@ function LoginForm(props) {
 }
 
 export default LoginForm;
+
+const LoginCSS = css`
+  .but {
+    position:fixed;
+    color:red;
+    font-size: 100px;
+  }
+`
