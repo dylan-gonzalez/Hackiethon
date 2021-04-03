@@ -22,9 +22,14 @@ const ContentBlock = ({ children, img }) => {
       css={ContentBlockCSS}
       onMouseEnter={handleHover}
       onMouseLeave={handleHover}
-    >
+    > 
+      {/* {console.log("HERE: ", img.split("/")[5])} */}
       {img === hovered && <div className="content">{children}</div>}
-      <img src={img} />
+      {img === null ? 
+        <img src="" />
+        : <img src={`https://drive.google.com/thumbnail?id=${img.split("/")[5]}`} />
+    }
+     
     </div>
     
   )
@@ -45,6 +50,8 @@ const ContentBlockCSS = css`
     &:hover {
       background-color: rgba(0, 0, 0, 0.65);
       cursor: pointer;
+
+
     }
 
     .Icon {

@@ -14,7 +14,7 @@ import four from './img/four.jpg'
 import five from './img/five.jpg'
 import six from './img/six.jpg'
 
-const content = [one, two, three, four, five, six]
+const content = [one, two, three, four, five, six] //images from the gapi call
 
 // function panLeft() {
 //   var elmnt = getElementById("vids")
@@ -31,7 +31,7 @@ const content = [one, two, three, four, five, six]
 /**
  * @function ContentRow
  */
-const ContentRow = ({ category, setActive }) => {
+const ContentRow = ({ category, setActive, events }) => {
   const getPos = useCallback(e => {
     const pos = e.target.parentElement.getBoundingClientRect()
     setActive({ category, pos })
@@ -88,6 +88,22 @@ const ContentRow = ({ category, setActive }) => {
       >
         <h2>{category}</h2>
 
+<<<<<<< HEAD
+        <div className="block-wrapper">
+          {/* {content.map(img => ( */}
+          {/* {events[0].attachments !== undefined ? console.log("file Ur: ", events[0].attachments[0].fileUrl) : ''} */}
+          {events.map(event => {
+            // { console.log("attachment: ", event.summary) }
+            return (
+            <ContentBlock  img={event.attachments !== undefined ? event.attachments[0].fileUrl : null}>
+              <Icon type="play" />
+              <Icon type="info-circle" onClick={getPos} />
+              </ContentBlock>
+            )
+          })}
+            
+          {/* ))} */}
+=======
         <div class="row-container">
 
           <button id="slide-left">Scroll Left</button>
@@ -102,6 +118,7 @@ const ContentRow = ({ category, setActive }) => {
 
           </div>
           {/* <button id="slide-right" onclick={panRight()}>Scroll Right</button> */}
+>>>>>>> 62f286030fde45543c8ca80f904ecce67067ae54
         </div>
       </div>
     </div>
