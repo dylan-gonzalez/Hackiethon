@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Fragment, useEffect } from 'react';
 import Conversations from '@twilio/conversations';
 import {
@@ -6,10 +5,6 @@ import {
   NavLink,
   HashRouter
 } from "react-router-dom";
-=======
-import React from 'react';
-import Conversations from '@twilio/conversations';
->>>>>>> classroom-channels
 
 import LoginForm from './LoginForm/index.js';
 import ChatRooms from './ChatRooms/index.js';
