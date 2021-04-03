@@ -16,34 +16,16 @@ import ChatRooms from './ChatRooms/index.js';
 import ChatLog from './ChatLog/index.js';
 import ChatInput from './ChatInput/index.js';
 import Sidebar from './Sidebar';
-<<<<<<< HEAD
 import UserProfile from './UserProfile';
 
 import './App.css';
 import Webinars from './Webinars/index.js';
-=======
-
-import './App.css';
->>>>>>> classroom-channels
 
 export const ChatContext = React.createContext();
 
 function App() {
   const [user, setUser] = React.useState({api: null, username: null, chatrooms: [], classrooms: []});
   const [selectedChatroom, setSelectedChatroom] = React.useState(null);
-<<<<<<< HEAD
-
-  const chatData = {
-    user: user,
-    selectedChatroom: selectedChatroom,
-  
-  }
-  // useEffect(() => {
-  //   fetch("/time").then(res => res.json()).then(data => {
-  //     setCurrentTime(data.time);
-  //   })
-  // }, []);
-=======
   const [showProfile, setShowProfile] = React.useState(false);
 
   const chatData = {
@@ -82,12 +64,10 @@ function App() {
     },
 
   }
->>>>>>> classroom-channels
 
   return (
     <div className="App">
       <h1>Twilio Conversations API Demo</h1>
-<<<<<<< HEAD
       {/* <ChatContext.Provider value={chatData}>
         <LoginForm />
         {chatData.user.username !== null &&
@@ -118,20 +98,6 @@ function App() {
             </div>
           }
         </HashRouter>
-=======
-      <ChatContext.Provider value={chatData}>
-        <LoginForm />
-        {chatData.user.username !== null &&
-          <div id="chat">
-          {/* <ChatRooms /> */}
-            <Sidebar />
-            <ChatLog />
-            <ChatInput />
-            {/* <UserProfile /> */}
-
-          </div>
-        }
->>>>>>> classroom-channels
       </ChatContext.Provider>
     </div>
 
