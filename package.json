@@ -3,9 +3,13 @@
   "version": "3.0.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@emotion/core": "10.1.1",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
+=======
+    "@emotion/core": "^11.0.0",
+>>>>>>> 75ca2a9361acfeea859d03434f5e98f8c6889192
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
