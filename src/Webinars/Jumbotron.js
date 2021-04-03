@@ -3,8 +3,8 @@
 import React from 'react'
 import { css, jsx } from '@emotion/core'
 import Button from './Button'
-import wallpaper from '../img/wallpaper.jpg'
-import logo from '../img/logo.png'
+import wallpaper from './img/wallpaper.jpg'
+import logo from './img/logo.png'
 
 /**
  * @function Jumbotron

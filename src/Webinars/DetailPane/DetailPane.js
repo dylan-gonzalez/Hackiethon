@@ -1,4 +1,5 @@
 /** @jsxRuntime classic */
+
 /** @jsx jsx */
 import React, { useState, useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
@@ -7,7 +8,7 @@ import Overview from './Overview'
 import Episodes from './Episodes'
 import Details from './Details'
 import Icon from '../Icon'
-import logo from '../../img/logo.png'
+import logo from '.././img/logo.png'
 
 const TABS = ['Overview', 'Episodes', 'Details']
 

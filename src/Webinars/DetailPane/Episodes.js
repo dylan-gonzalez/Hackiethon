@@ -1,14 +1,15 @@
 /** @jsxRuntime classic */
+
 /** @jsx jsx */
 import React from 'react'
 import { css, jsx } from '@emotion/core'
 import ContentBlock from '../ContentBlock'
 import Icon from '../Icon'
 
-import episodeone from '../../img/episodeone.jpg'
-import episodetwo from '../../img/episodetwo.jpg'
-import episodethree from '../../img/episodethree.jpg'
-import episodefour from '../../img/episodefour.jpg'
+import episodeone from '.././img/episodeone.jpg'
+import episodetwo from '.././img/episodetwo.jpg'
+import episodethree from '.././img/episodethree.jpg'
+import episodefour from '.././img/episodefour.jpg'
 
 const EPISODES = [episodeone, episodetwo, episodethree, episodefour]
 

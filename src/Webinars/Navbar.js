@@ -1,8 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React, { useState, useEffect, forwardRef } from 'react'
-import { css, jsx } from '@emotion/core'
-import netflixLogo from '../img/netflix-logo.png'
+import { css, /*jsx*/ } from '@emotion/core';
+import { jsx } from '@emotion/react';
+import netflixLogo from './img/netflix-logo.png'
 import Icon from './Icon'
 
 const leftLinks = ['Home', 'TV Shows', 'Movies', 'Latest', 'My List']
