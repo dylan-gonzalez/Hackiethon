@@ -71,7 +71,7 @@ const Navbar = forwardRef((props, ref) => {
 })
 
 const NavbarCSS = css`
-  position: fixed;
+  position: static;
   height: 68px;
   z-index: 99;
   width: 100%;
