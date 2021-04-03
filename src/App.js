@@ -12,6 +12,7 @@ import ChatLog from './ChatLog/index.js';
 import ChatInput from './ChatInput/index.js';
 import Sidebar from './Sidebar';
 import UserProfile from './UserProfile';
+import Calendar from './Calendar';
 
 import './App.css';
 import Webinars from './Webinars/index.js';
@@ -89,7 +90,8 @@ function App() {
             }/>
             </div>
             <Route path="/profile" component={UserProfile} />
-            <Route path = "/webinars" component = {Webinars} />
+            <Route path="/webinars" component={Webinars} />
+            <Route path = "/calendar" component= {Calendar} />
             </div>
           }
         </HashRouter>

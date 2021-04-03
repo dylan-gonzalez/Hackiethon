@@ -10,7 +10,7 @@ function Sidebar(props) {
         <div class="sidebar-container">
             <NavLink to="/profile" class = "profile-icon"><img src="/profile.png" /></NavLink>
             <NavLink to = "/webinars">Upcoming Webinars</NavLink>
-
+            <NavLink to = "/calendar">Calendar</NavLink>
             <ChatRooms />
             {/* <a href = "/profile"><img src = "/profile.png"/></a> */}
 
