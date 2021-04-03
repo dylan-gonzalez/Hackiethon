@@ -33,8 +33,8 @@ function LoginForm(props) {
     return (
       <div id="login">
         <div>
-          Username: <b>{ chatData.user.username }</b>&nbsp;
-          <button onClick={logout}>Logout</button>
+          Username: <b>{chatData.user.username}</b>&nbsp;
+          {props.history.location.pathname === "/webinars" ? '' : <button onClick={logout}>Logout</button>}
         </div>
       </div>
     );
