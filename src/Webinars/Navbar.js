@@ -5,7 +5,7 @@ import { css, /*jsx*/ } from '@emotion/core';
 import { jsx } from '@emotion/react';
 import Icon from './Icon'
 
-const leftLinks = ['Home', 'TV Shows', 'Movies', 'Latest', 'My List']
+const leftLinks = ['PHysics', 'TV Shows', 'Movies', 'Latest', 'My List']
 
 /**
  * @function Navbar
@@ -72,14 +72,14 @@ const Navbar = forwardRef((props, ref) => {
 })
 
 const NavbarCSS = css`
-  position: static;
+  // position: static;
   position: relative;
   height: 68px;
   z-index: 99;
   width: 100%;
   padding: 0 25px;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   .nav-title {
     font-size: 30px;
@@ -87,17 +87,20 @@ const NavbarCSS = css`
   ul {
     display: flex;
     align-items: center;
+    background: green;
+    margin: 50px;
+    color: red;
   }
   li {
-    margin-right: 20px;
+    margin-right: 30px;
   }
   a {
-    font-size: 15px;
-    letter-spacing: 0.5px;
+    font-size: 17px;
+    letter-spacing: 1px;
     color: #e5e5e5;
   }
   a.active {
-    color: white;
+    // color: white;
     font-weight: 500;
   }
   ul.right {
