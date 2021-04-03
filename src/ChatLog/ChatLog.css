@@ -1,4 +1,5 @@
 #chat-content {
+  position: relative;
   overflow: auto;
   height: auto;
   margin: 5px;

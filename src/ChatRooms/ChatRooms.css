@@ -1,9 +1,7 @@
 #chatrooms {
-  /* border-right: 1px solid black; */
   width: 50%;
   height: auto;
   padding-right: 5px;
-  /* margin-left: -50%; */
   background-color: gray;
 }
 
@@ -14,17 +12,18 @@
   margin-right: 5px;
   padding: 5px;
   border: 0;
-  /* background: rgb(255, 255, 255); */
-}
-
-.chatroom:hover {
-  /* background: #eee; */
 }
 
 .chatroom:focus {
-  /* outline: 0; */
+  outline: none;
+
 }
 
 .chatroom.selected {
-  /* background: #ddd; */
+  background: rgb(69, 152, 254);
+}
+
+.chatroom:hover {
+  background: rgb(111, 211, 250);
+  cursor: pointer;
 }

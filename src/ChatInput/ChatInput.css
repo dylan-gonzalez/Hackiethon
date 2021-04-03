@@ -1,10 +1,11 @@
 #chat-input {
+  position: fixed;
   margin-top: 10px;
   padding-top: 5px;
   bottom: 0;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: row;
-  position: absolute;
   width: 100%;
   text-align: left;
 }

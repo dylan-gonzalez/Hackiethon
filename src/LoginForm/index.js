@@ -36,7 +36,6 @@ function LoginForm(props) {
   }
   else {
     return (
-<<<<<<< HEAD
       <div id="login">
         <h1>Twilio Conversations API Demo</h1>
 
@@ -44,13 +43,6 @@ function LoginForm(props) {
           Username: <b>{chatData.user.username}</b>&nbsp;
           {/* {props.history.location.pathname === "/webinars" ? '' : <button onClick={logout}>Logout</button>} */}
           <button onClick={logout}>Logout</button>
-=======
-      <div id="login" css={[LoginCSS]}>
-        <div>
-          Username: <b>{chatData.user.username}</b>&nbsp;
-          {props.history.location.pathname === "/webinars" ? '' : <button onClick={logout}>Logout</button>}
-
->>>>>>> 7f879169726edc00d989f4aaa54de7780352c070
         </div>
       </div>
     );

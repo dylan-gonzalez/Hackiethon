@@ -74,12 +74,12 @@ const Navbar = forwardRef((props, ref) => {
 const NavbarCSS = css`
   // position: static;
   position: relative;
-  height: 68px;
+  height: 90px;
   z-index: 99;
   width: 100%;
   padding: 0 25px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   .nav-title {
     font-size: 30px;
@@ -88,8 +88,8 @@ const NavbarCSS = css`
     display: flex;
     align-items: center;
     background: green;
-    margin: 50px;
     color: red;
+    height: 100%;
   }
   li {
     margin-right: 30px;

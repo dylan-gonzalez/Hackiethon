@@ -13,7 +13,7 @@ import ChatLog from './ChatLog/index.js';
 import ChatInput from './ChatInput/index.js';
 import Sidebar from './Sidebar';
 import UserProfile from './UserProfile';
-// import Calendar from './Calendar';
+import Calendar from './Calendar';
 
 import './App.css';
 import Webinars from './Webinars/index.js';
