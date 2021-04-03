@@ -1,0 +1,19 @@
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  border-right: 1px solid rgb(0, 0, 0);
+  width: 20%;
+  height: 100vh;
+}
+
+.profile-icon {
+  width: 50%;
+}
+
+img {
+  border-radius: 50%;
+  /* width: 50%; */
+  max-width: 100%;
+  align-items: center;
+}
