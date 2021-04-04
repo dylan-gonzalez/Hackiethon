@@ -16,6 +16,7 @@ const DetailPane = ({ category, pos, setActive }) =>
         position: absolute;
         border: 2px solid white;
         top: ${pos + scrollY}px;
+        // left: ${pos }px;
         z-index: 99;
 
         .Icon {

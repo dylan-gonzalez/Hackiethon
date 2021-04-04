@@ -75,24 +75,28 @@ function App() {
                 <div id="chat">
                 <Route path="/main" render={() =>
                   <Fragment>
-                    <LoginForm />
-                    <div id="bulk">
-                      <Sidebar />
-                      <div id="chat-stuff">
-                        <ChatLog />
-                        <ChatInput />
+                    <div className="container">
+                      <div id="bulk">
+                        <LoginForm />
+                        <Sidebar />
+                        
                         
                       </div>
-                      
+                      <div id="chat-stuff">
+                        <h2 id="heading">Chats</h2>
+                        <ChatLog />
+                        <ChatInput />
+                          
+                      </div>
                     </div>
                   </Fragment>
-              }/>
+                }/>
+                </div>
+                <Route path="/profile" component={UserProfile} />
+                <Route path="/webinars" component={Webinars} />
+                <Route path = "/calendar" component= {Calendar} />
               </div>
-              <Route path="/profile" component={UserProfile} />
-              <Route path="/webinars" component={Webinars} />
-              <Route path = "/calendar" component= {Calendar} />
-              </div>
-              }
+            }
           </Switch>
         </HashRouter>
       </ChatContext.Provider>
