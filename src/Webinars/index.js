@@ -61,8 +61,10 @@ export default class Webinars extends React.Component {
       isEmpty: false,
       isLoading: true,
       activeRow: initialRow,
+      previousActiveState: false,
       previewEvent: null,
-      stateChange: false
+      stateChange: false,
+
     };
     // var that = this;
 
@@ -81,7 +83,7 @@ export default class Webinars extends React.Component {
     window.addEventListener("storage", this.localStorageUpdated)
     // const ImageContext = React.useContext(initialValue);
 
-
+    
     // setInterval(() => {
     //   this.tick();
     //   this.componentDidMount();
@@ -145,7 +147,7 @@ export default class Webinars extends React.Component {
             if (events.length > 0) {
               that.setState(
                 {
-                  events: sortedEvents,
+                  // events: sortedEvents,
                   isLoading: false,
                   isEmpty: false
                 },
@@ -326,15 +328,16 @@ export default class Webinars extends React.Component {
    * Print files.
    */
   listFiles = () => {
-    console.log("listfiles")
+    // console.log("listfiles")
     gapi.client.drive.files.list({
-      'pageSize': 100,
+      'pageSize': 40,
       'fields': "nextPageToken, files(id, name)",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      'folderId': '1TmxJrQsEhGCAzvr0DF7mKachOdfxNmPG'
     }).then((response) => {
       // this.appendPre('Files:');
       var files = response.result.files;
-      console.log("Files: ", files);
+      // console.log("Files: ", files);
       this.setState({ files: files });
 
 
@@ -357,7 +360,7 @@ export default class Webinars extends React.Component {
     
 
   changePreview = async (event) => {
-    console.log("previewEvent: ", event)
+    // console.log("previewEvent: ", event)
     await this.setState({ previewEvent: event })
     // console.log(this.state.previewEvent.attachments)
   }
@@ -389,14 +392,14 @@ export default class Webinars extends React.Component {
       }
     }
 
-    console.log("Drive files: ", driveFiles)
+    // console.log("Drive files: ", driveFiles)
     if (driveFiles.length > 0) {
       for (let i = 0; i < driveFiles.length; i++) {
         // console.log(random_descriptions[i]);
         
         // console.log(driveFiles[i].id)
         var event = {
-          'summary': `Restricted #${i}`,
+          'summary': `Surely #${i}`,
           'location': '800 Howard St., San Francisco, CA 94103',
           'description': random_descriptions[i],
           "start": {
@@ -439,17 +442,35 @@ export default class Webinars extends React.Component {
     // console.log("request: ", request);
     console.log((new Date()).toISOString())
 
-    gapi.client.calendar.events.list({
+    await this.setState({ events: []})
+    // gapi.client.calendar.events.list({
+    //   'calendarId': CALENDAR_ID,
+    //   'timeMin': (new Date()).toISOString(),
+    //   'showDeleted': false,
+    //   'singleEvents': true,
+    //   'maxResults': 60,
+    //   'orderBy': 'startTime'
+    // }).then(response =>
+    //   this.setState({ events: response.result.items }))
+    await gapi.client.calendar.events.list({
       'calendarId': CALENDAR_ID,
       'timeMin': (new Date()).toISOString(),
       'showDeleted': false,
       'singleEvents': true,
-      'maxResults': 30,
+      'maxResults': 300,
       'orderBy': 'startTime'
-    }).then(response =>
-      this.setState({ events: response.result.items }))
+    }).then(response => {
+      // console.log("testing'")
+      for (let i = 0; i < response.result.items.length; i++) {
+        // console.log(response.result.items[i].summary.split(" "))
+        if (response.result.items[i].summary.split(" ").includes("Surely")) {
+          console.log("1")
+          this.setState({ events: [...this.state.events, response.result.items[i]] })
+        }
+      }
+    })
     
-    console.log("the events: ", this.state.events)
+    console.log("FINAL: ", this.state.events);
     
     // console.log("here: ", this.state.events[0])
     // console.log(response.result.items)))
@@ -532,7 +553,9 @@ export default class Webinars extends React.Component {
   }
 
 
-  setActive = activeRow => {
+  setActive = async activeRow => {
+    // await this.setState({previousActiveState: this.state.activeRow})
+    console.log(this.state.activeRow);
     activeRow.category ? this.setState({ activeRow: activeRow }) : this.setState({ activeRow: initialRow })
   }
 
@@ -541,45 +564,51 @@ export default class Webinars extends React.Component {
     const navRef = createRef()
 
     const { time, events } = this.state;
-    const { category, pos: { top, bottom } } = this.state.activeRow
-
-    // useEffect(() => {
-    //   if (!category) return
-    //   const navHeight = navRef.current.offsetHeight
-  
-    //   window.scrollTo({
-    //     top: top + window.scrollY - navHeight,
-    //     left: 0,
-    //     behavior: 'smooth'
-    //   })
-    // }, [category])
-
     
+    const {
+      category,
+      pos: { top, bottom }
+    } = this.state.activeRow
+          
+    // if (!category) return
+
+    // const navRef = createRef()
+
+    // const navHeight = navRef.current.offsetHeight
+    
+    // window.scrollTo({
+    //   top: top + window.scrollY - navHeight,
+    //   left: 0,
+    //   behavior: 'smooth'
+    // })
+
     return (
       <>
         {/* {console.log("rerender")} */}
         <Global styles={GlobalCSS} />
         <Navbar ref={navRef} />
         {/* {console.log("events: ", this.state.events)} */}
-        {console.log("previewEvent: ", this.state.previewEvent)}
+        {/* {console.log("previewEvent: ", this.state.previewEvent)} */}
         <Jumbotron event={this.state.previewEvent}/>
 
         {/* {console.log(categories)} */}
 
         <div className="all-content-wrapper">
-          {console.log(categories.slice(0))
-          }
+          {/* {console.log(categories.slice(0)) */}
+          
           {categories.slice(0).map((category, index) => (
             <ContentRow key={category} category={category} changePreview={this.changePreview} events={this.state.events.slice(index*10, index*10 + 10)} setActive={this.setActive} />
           ))}
         </div>
-
-        <DetailPane
-          category={category}
-          top={bottom + window.scrollY}
-          setActive={this.setActive}
-          event = {this.state.previewEvent}
-        />
+          
+        {this.state.previousActiveState !== this.state.activeRow ?
+          <DetailPane
+            category={category}
+            top={bottom + window.scrollY} //+ window.scrollY}
+            setActive={this.setActive}
+            event={this.state.previewEvent}
+          />
+          : ''}
         <Footer />
       </>
     )
@@ -675,16 +704,16 @@ export default class Webinars extends React.Component {
 
 //   const navRef = createRef()
 
-//   useEffect(() => {
-//     if (!category) return
-//     const navHeight = navRef.current.offsetHeight
+  // useEffect(() => {
+  //   if (!category) return
+  //   const navHeight = navRef.current.offsetHeight
 
-//     window.scrollTo({
-//       top: top + window.scrollY - navHeight,
-//       left: 0,
-//       behavior: 'smooth'
-//     })
-//   }, [category])
+  //   window.scrollTo({
+  //     top: top + window.scrollY - navHeight,
+  //     left: 0,
+  //     behavior: 'smooth'
+  //   })
+  // }, [category])
 
 //   const setActive = activeRow => {
 //     activeRow.category ? setActiveRow(activeRow) : setActiveRow(initialRow)

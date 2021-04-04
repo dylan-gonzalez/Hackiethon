@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 import { css, jsx } from '@emotion/core'
 import DetailPaneNav from './DetailPaneNav'
 import Overview from './Overview'
@@ -17,10 +17,24 @@ const TABS = ['Overview', 'Episodes', 'Details']
  */
 const DetailPane = (props) => {
   const [tab, setTab] = useState()
+  const navRef = createRef()
 
   useEffect(() => {
     setTab(TABS[0])
   }, [!props.category])
+
+  useEffect(() => {
+    if (!props.category) return
+
+
+    const navHeight = 68; //navRef.current.offsetHeight
+
+    window.scrollTo({
+      top: props.top + window.scrollY - navHeight,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }, [props.category]);
 
   return (
     props.category && (

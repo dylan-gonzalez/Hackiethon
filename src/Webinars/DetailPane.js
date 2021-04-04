@@ -1,10 +1,12 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React from 'react'
+import React, { createRef, useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
 import Icon from './Icon'
 
 const DetailPane = ({ category, pos, setActive }) =>
+
+  
   category && (
     <div
       css={css`
@@ -13,8 +15,7 @@ const DetailPane = ({ category, pos, setActive }) =>
         width: 100%;
         position: absolute;
         border: 2px solid white;
-        // top: ${pos + scrollY}px;
-        // left: ${pos + scrollX}px;
+        top: ${pos + scrollY}px;
         z-index: 99;
 
         .Icon {
