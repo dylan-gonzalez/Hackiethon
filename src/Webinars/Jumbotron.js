@@ -37,11 +37,11 @@ const JumbotronCSS = css`
   top: 0;
 
   .synopsis {
-    padding-top: 200px;
+    padding-top: 300px;
     padding-left: 60px;
     max-width: 500px;
     color: white;
-    background: green;
+    // background: green;
     padding-left: 60px;
 
     .quote  {
