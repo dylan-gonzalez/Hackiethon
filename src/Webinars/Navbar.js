@@ -32,12 +32,12 @@ const Navbar = forwardRef((props, ref) => {
         scrolled
           ? css`
               // background-color: rgb(20, 20, 20);
-              background-color: rgb(1000, 20, 20);
-              background-image: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.7) 10%,
-                rgba(0, 0, 0, 0)
-              );
+              // background-color: rgb(1000, 20, 20);
+              // background-image: linear-gradient(
+              //   to bottom,
+              //   rgba(0, 0, 0, 0.7) 10%,
+              //   rgba(0, 0, 0, 0)
+              // );
             `
           : css`
               background: transparent;
@@ -73,7 +73,7 @@ const Navbar = forwardRef((props, ref) => {
 
 const NavbarCSS = css`
   // position: static;
-  position: relative;
+  position: fixed;
   height: 90px;
   z-index: 99;
   width: 100%;
@@ -87,8 +87,8 @@ const NavbarCSS = css`
   ul {
     display: flex;
     align-items: center;
-    background: green;
-    color: red;
+    // background: green;
+    // color: red;
     height: 100%;
   }
   li {
@@ -97,7 +97,7 @@ const NavbarCSS = css`
   a {
     font-size: 17px;
     letter-spacing: 1px;
-    color: #e5e5e5;
+    // color: #e5e5e5;
   }
   a.active {
     // color: white;

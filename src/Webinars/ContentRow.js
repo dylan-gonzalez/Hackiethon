@@ -37,21 +37,21 @@ const ContentRow = ({ category, setActive, events }) => {
     setActive({ category, pos })
   }, [])
 
-  useEffect(() => {
-      var elem = document.getElementById('slide-left');
-      elem.onclick = function() {
-        var lol = document.getElementById('vid-container')
-        lol.style.background = 'yellow';
-        lol.style.left += 300 ;
-    }
-  });
+  // useEffect(() => {
+  //     var elem = document.getElementById('slide-left');
+  //     elem.onclick = function() {
+  //       var lol = document.getElementById('vid-container')
+  //       lol.style.background = 'yellow';
+  //       lol.style.left += 300 ;
+  //   }
+  // });
 
   return (
     <div
       className="ContentRow"
       css={css`
         padding-left: 120px;
-        overflow-x: hidden;
+        // overflow-x: hidden;
         display: flex;
         justify-content: center;
 
@@ -73,16 +73,13 @@ const ContentRow = ({ category, setActive, events }) => {
             display: flex;
           }
 
-          #vid-container {
+          .block-wrapper {
             display: flex;
+            flex-direction: row;
             width: 800px;
             position: relative;
             background: blue;
             overflow-x: scroll;
-          }
-
-          p {
-            width: 1000px;
           }
         `}
       >
@@ -90,7 +87,7 @@ const ContentRow = ({ category, setActive, events }) => {
         
         <div class="row-container">
 
-          <button id="slide-left">Scroll Left</button>
+          {/* <button id="slide-left">Scroll Left</button> */}
           <div id="vid-container"></div>
 
         <div className="block-wrapper">

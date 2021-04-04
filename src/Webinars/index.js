@@ -161,8 +161,8 @@ export default class Webinars extends React.Component {
     
     return (
       <>
-        {/* <Global styles={GlobalCSS} />
-        <Navbar ref={navRef} /> */}
+        <Global styles={GlobalCSS} />
+        <Navbar ref={navRef} />
         {/* {console.log("events: ", this.state.events)} */}
         <Jumbotron>
           <ContentRow category={categories[0]} events={this.state.events} setActive={this.setActive} />
@@ -170,7 +170,7 @@ export default class Webinars extends React.Component {
 
         {/* {console.log(categories)} */}
   
-        {categories.slice(1).map(category => (
+        {categories.slice(0).map(category => (
           <ContentRow key={category} category={category} events={this.state.events} setActive={this.setActive} />
         ))}
   
