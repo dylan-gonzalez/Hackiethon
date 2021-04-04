@@ -87,7 +87,6 @@ const NavbarCSS = css`
   ul {
     display: flex;
     align-items: center;
-    background: green;
     margin: 50px;
     color: red;
   }

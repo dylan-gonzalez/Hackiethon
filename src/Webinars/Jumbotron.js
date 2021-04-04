@@ -12,7 +12,7 @@ import logo from './img/logo.png'
 const Jumbotron = ({ children }) => (
   <div css={JumbotronCSS}>
     <div className="synopsis">
-      {/* <img src={logo} /> */}
+      <img src={logo} />
 
       <p class="quote">
       “He who learns but does not think, is lost! 
@@ -23,7 +23,7 @@ const Jumbotron = ({ children }) => (
       <Button icon="info-circle">More Info</Button>
     </div>
 
-    {/* {children} */}
+    {children}
   </div>
 )
 
@@ -60,7 +60,6 @@ const JumbotronCSS = css`
 
   .ContentRow {
     position: absolute;
-    background-color: green;
     bottom: 20px;
   }
 `

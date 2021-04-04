@@ -37,14 +37,14 @@ const ContentRow = ({ category, setActive, events }) => {
     setActive({ category, pos })
   }, [])
 
-  useEffect(() => {
-      var elem = document.getElementById('slide-left');
-      elem.onclick = function() {
-        var lol = document.getElementById('vid-container')
-        lol.style.background = 'yellow';
-        lol.style.left += 300 ;
-    }
-  });
+  // useEffect(() => {
+  //     var elem = document.getElementById('slide-left');
+  //     elem.onclick = function() {
+  //       var lol = document.getElementById('vid-container')
+  //       lol.style.background = 'yellow';
+  //       lol.style.left += 300 ;
+  //   }
+  // });
 
   return (
     <div
@@ -77,8 +77,15 @@ const ContentRow = ({ category, setActive, events }) => {
             display: flex;
             width: 800px;
             position: relative;
-            background: blue;
-            overflow-x: scroll;
+            // overflow-x: scroll;
+          }
+
+          .block-wrapper {
+            display: flex;
+            width: 100%;
+            height: 250px;
+
+            position: relative;
           }
 
           p {
@@ -88,10 +95,13 @@ const ContentRow = ({ category, setActive, events }) => {
       >
         <h2>{category}</h2>
 
-<<<<<<< HEAD
-        <div className="block-wrapper">
-          {/* {content.map(img => ( */}
-          {/* {events[0].attachments !== undefined ? console.log("file Ur: ", events[0].attachments[0].fileUrl) : ''} */}
+        {/* <div class="row-container"> */}
+
+          {/* <button id="slide-left">Scroll Left</button> */}
+          <div id="vid-container">
+          
+          <div className="block-wrapper">
+
           {events.map(event => {
             // { console.log("attachment: ", event.summary) }
             return (
@@ -101,26 +111,12 @@ const ContentRow = ({ category, setActive, events }) => {
               </ContentBlock>
             )
           })}
-            
-          {/* ))} */}
-=======
-        <div class="row-container">
-
-          <button id="slide-left">Scroll Left</button>
-          <div id="vid-container">
-            
-            {content.map(img => (
-              <ContentBlock key={img} img={img}>
-                <Icon type="play" />
-                <Icon type="info-circle" onClick={getPos} />
-              </ContentBlock>
-            ))}
+          </div>
 
           </div>
           {/* <button id="slide-right" onclick={panRight()}>Scroll Right</button> */}
->>>>>>> 62f286030fde45543c8ca80f904ecce67067ae54
         </div>
-      </div>
+      {/* </div> */}
     </div>
   )
 }
