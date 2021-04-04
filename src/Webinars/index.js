@@ -59,7 +59,6 @@ export default class Webinars extends React.Component {
           apiKey: GOOGLE_API_KEY
         })
         .then(function () {
-          console.log("moment: ", moment().toISOString());
           return gapi.client.request({
             path: `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?supportsAttachments=true&maxResults=11&orderBy=updated&timeMin=${moment().toISOString()}&timeMax=${moment()
               .endOf("year")
@@ -69,6 +68,7 @@ export default class Webinars extends React.Component {
         .then(
           response => {
             let events = response.result.items;
+            console.log("Events: ", events);
             console.log("response: ", response)
             let sortedEvents = events.sort(function (a, b) {
               return (
@@ -165,6 +165,7 @@ export default class Webinars extends React.Component {
         <Navbar ref={navRef} />
         {/* {console.log("events: ", this.state.events)} */}
         <Jumbotron>
+          
           <ContentRow category={categories[0]} events={this.state.events} setActive={this.setActive} />
         </Jumbotron>
 
