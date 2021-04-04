@@ -93,8 +93,8 @@ function App() {
                 }/>
                 </div>
                 <Route path="/profile" component={UserProfile} />
-                <Route path="/webinars" component={Webinars} />
-//                 <Route path = "/calendar" component= {Calendar} />
+              <Route path="/webinars" component={Webinars} />
+              {/* <Route path="/calendar" component={Calendar} /> */}
               </div>
             }
           </Switch>
