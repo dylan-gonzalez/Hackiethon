@@ -88,7 +88,6 @@ const ContentRow = ({ category, setActive, events }) => {
       >
         <h2>{category}</h2>
 
-<<<<<<< HEAD
         <div className="block-wrapper">
           {/* {content.map(img => ( */}
           {/* {events[0].attachments !== undefined ? console.log("file Ur: ", events[0].attachments[0].fileUrl) : ''} */}
@@ -103,22 +102,6 @@ const ContentRow = ({ category, setActive, events }) => {
           })}
             
           {/* ))} */}
-=======
-        <div class="row-container">
-
-          <button id="slide-left">Scroll Left</button>
-          <div id="vid-container">
-            
-            {content.map(img => (
-              <ContentBlock key={img} img={img}>
-                <Icon type="play" />
-                <Icon type="info-circle" onClick={getPos} />
-              </ContentBlock>
-            ))}
-
-          </div>
-          {/* <button id="slide-right" onclick={panRight()}>Scroll Right</button> */}
->>>>>>> 62f286030fde45543c8ca80f904ecce67067ae54
         </div>
       </div>
     </div>
