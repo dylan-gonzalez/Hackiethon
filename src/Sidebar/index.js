@@ -8,11 +8,10 @@ import './Sidebar.css';
 function Sidebar(props) {
     return (
         <div class="sidebar-container">
-            <NavLink to="/profile" class = "profile-icon"><img src="/profile.png" /></NavLink>
-            <NavLink to = "/webinars">Upcoming Webinars</NavLink>
-            <NavLink to = "/calendar">Calendar</NavLink>
-            <ChatRooms />
-            {/* <a href = "/profile"><img src = "/profile.png"/></a> */}
+            <NavLink id="icon" to="/profile" class = "profile-icon"><img src="/profile.png" /></NavLink>
+            <NavLink id="webinars" className="link" to = "/webinars">Upcoming Webinars</NavLink>
+            <NavLink id="calendar" className="link" to = "/calendar">Calendar</NavLink>
+            <ChatRooms id="chatrooms" />
 
         </div>
     )

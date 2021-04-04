@@ -11,7 +11,7 @@ function ChatRooms() {
 
   return (
     <>
-      <h3>Classes</h3>
+      <h3 id="classes">Classes</h3>
 
       <div id="chatrooms">
         {chatData.user.chatrooms.map(chatroom => {

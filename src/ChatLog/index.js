@@ -31,7 +31,7 @@ function ChatLog() {
     <div id="chat-content">
       <div id="chat-log">
         {messages.map(msg =>
-          <div key={msg.sid}><b>{msg.author}</b>: {msg.body}</div>
+          <div className="msg" key={msg.sid}><b>{msg.author}</b>{msg.body}</div>
         )}
         <div ref={bottom} />
       </div>

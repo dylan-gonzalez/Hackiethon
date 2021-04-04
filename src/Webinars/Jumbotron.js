@@ -73,6 +73,7 @@ function styling(img) {
 
       .quote  {
         font-size: 23px;
+        letter-spacing: 1px;
       }
 
     .Icon {
@@ -80,16 +81,15 @@ function styling(img) {
         font-size: 18px;
       }
 
+      Button {
+        transition-duration: 0.2s;
+      }
+
       Button:hover {
-        color: red;
+        color: rgb(150, 250, 200);
       }
     }
 
-    // .ContentRow {
-    //   position: absolute;
-    //   // background-color: green;
-    //   bottom: 20px;
-    // }
   `
 }
 export default Jumbotron
