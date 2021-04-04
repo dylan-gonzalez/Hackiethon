@@ -78,8 +78,15 @@ const ContentRow = ({ category, setActive, events }) => {
             flex-direction: row;
             width: 800px;
             position: relative;
-            background: blue;
-            overflow-x: scroll;
+            // overflow-x: scroll;
+          }
+
+          .block-wrapper {
+            display: flex;
+            width: 100%;
+            height: 250px;
+
+            position: relative;
           }
         `}
       >
@@ -92,9 +99,13 @@ const ContentRow = ({ category, setActive, events }) => {
             <h3>gd morning</h3>
           </div>
 
-        <div className="block-wrapper">
-          {/* {content.map(img => ( */}
-          {/* {events[0].attachments !== undefined ? console.log("file Ur: ", events[0].attachments[0].fileUrl) : ''} */}
+        {/* <div class="row-container"> */}
+
+          {/* <button id="slide-left">Scroll Left</button> */}
+          <div id="vid-container">
+          
+          <div className="block-wrapper">
+
           {events.map(event => {
             // { console.log("attachment: ", event.summary) }
             return (
@@ -104,14 +115,12 @@ const ContentRow = ({ category, setActive, events }) => {
               </ContentBlock>
             )
           })}
-          <h2>HELLLOOOo</h2>
-            
-          {/* ))} */}
+          </div>
 
           </div>
           {/* <button id="slide-right" onclick={panRight()}>Scroll Right</button> */}
         </div>
-      </div>
+      {/* </div> */}
     </div>
   )
 }

@@ -91,6 +91,8 @@ const NavbarCSS = css`
     // background: green;
     // color: red;
     height: 100%;
+    margin: 50px;
+    color: red;
   }
   li {
     margin-right: 30px;
