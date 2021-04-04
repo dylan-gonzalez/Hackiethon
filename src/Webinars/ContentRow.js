@@ -21,18 +21,27 @@ const content = [one, two, three, four, five, six] //images from the gapi call
 /**
  * @function ContentRow
  */
-const ContentRow = ({ category, setActive, events }) => {
+const ContentRow = ({ category, setActive, events, changePreview }) => {
   const getPos = useCallback(e => {
+    // console.log('pos')
     const pos = e.target.parentElement.getBoundingClientRect()
     setActive({ category, pos })
   }, [])
+
+  const hoverContentBlock = (event) => {
+    // console.log(event)
+
+    changePreview(event);
+      
+  }
 
 
   return (
     <div
       className="ContentRow"
       css={css`
-        padding-left: 120px;
+        // padding-left: 50px;
+        padding: 0 40px 0 40px;
         display: flex;
         justify-content: start;
 
@@ -70,7 +79,7 @@ const ContentRow = ({ category, setActive, events }) => {
           {events.map(event => {
             // { console.log("attachment: ", event.summary) }
             return (
-            <ContentBlock  img={event.attachments !== undefined ? event.attachments[0].fileUrl : null}>
+              <ContentBlock hoverContentBlock={hoverContentBlock} event={event} /* img={event.attachments !== undefined ? event.attachments[0].fileUrl : null}*/>
               <Icon type="play" />
               <Icon type="info-circle" onClick={getPos} />
             </ContentBlock>

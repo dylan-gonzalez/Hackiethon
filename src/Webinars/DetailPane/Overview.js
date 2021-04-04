@@ -8,11 +8,11 @@ import Button from '../Button'
 /**
  * @function Overview
  */
-const Overview = () => (
+const Overview = (props) => (
   <div css={OverviewCSS}>
     <p>
-      All he wagdo is leave town and start over. But first, he needs to
-      deal with his ex, his new roomie and the enemies who want him dead.
+      {(props.event !== undefined && props.event !== null) ? console.log("PROPS: ", props.event) : 'NULL'}
+      {(props.event !== undefined && props.event !== null) ? props.event.description : 'filler description'}
     </p>
 
     <Button icon="play">Play</Button>

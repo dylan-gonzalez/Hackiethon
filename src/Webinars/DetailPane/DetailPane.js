@@ -15,20 +15,20 @@ const TABS = ['Overview', 'Episodes', 'Details']
 /**
  * @function DetailPane
  */
-const DetailPane = ({ category, top, setActive }) => {
+const DetailPane = (props) => {
   const [tab, setTab] = useState()
 
   useEffect(() => {
     setTab(TABS[0])
-  }, [!category])
+  }, [!props.category])
 
   return (
-    category && (
+    props.category && (
       <div
         css={[
           DetailPaneCSS,
           css`
-            top: ${top}px;
+            top: ${props.top}px;
           `
         ]}
       >
@@ -37,7 +37,7 @@ const DetailPane = ({ category, top, setActive }) => {
             css={css`
               max-width: ${tab === 'Overview' ? 375 : 175}px;
             `}
-            src={logo}
+            src={props.event !== null ? `https://drive.google.com/thumbnail?id=${props.event.attachments[0].fileId}` : ''}
           />
 
           {(() => {
@@ -47,12 +47,13 @@ const DetailPane = ({ category, top, setActive }) => {
               case 'Episodes':
                 return <Episodes />
               default:
-                return <Overview />
+                console.log(props.event);
+                return <Overview event = {props.event} />
             }
           })()}
         </div>
 
-        <Icon type="times" onClick={setActive} />
+        <Icon type="times" onClick={props.setActive} />
         <DetailPaneNav tab={tab} tabs={TABS} setTab={setTab} />
       </div>
     )

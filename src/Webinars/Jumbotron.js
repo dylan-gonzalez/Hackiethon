@@ -1,36 +1,63 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
 import Button from './Button'
 import wallpaper from './img/wallpaper.jpg'
+
+import { wrapState } from './ContentBlock.js';
 
 // import handleHover from './ContentBlock.js'
 
 /**
  * @function Jumbotron
  */
-const Jumbotron = ({ background }) => (
-  <div css={styling(background)}>
+const Jumbotron = (props) => {
+
+  useEffect(() => {
+    // console.log(event);
+  })
+  // const [bgImg, setBgImg] = React.useState(null);
+
+  // test(() => {
+  //   console.log("hi")
+  // });
+
+  
+
+  // setInterval(async () => {
+  //   console.log(localStorage.getItem("hoveredImage"), bgImg)
+  //   if (localStorage.getItem("hoveredImage") !== bgImg) {
+  //     await setBgImg(localStorage.getItem("hoveredImage"))
+  //     console.log('yes')
+  //   }
+  // }, 3000)
+
+  return (
+    <>
+        {/* {console.log(props.event.attachments)} */}
+
+  <div css={props.event !== null ? (props.event.attachments !== undefined && styling(props.event.attachments[0].fileId)) : styling(null)}>
     <div className="synopsis">
       {/* <img src={logo} /> */}
-
       <p class="quote">
-      “He who learns but does not think, is lost! 
-      He who thinks but does not learn, is in great danger.” – Confucius
+      {props.event !== null ? props.event.description : "filler text"}
       </p>
 
       <Button icon="play">Play</Button>
       <Button icon="info-circle">More Info</Button>
     </div>
 
-  </div>
-)
+      </div>
+      </>
+  )
+}
 
 function styling(img) {
   return css`
     position: absolute;
-    background-image: url('${img}');
+    background-image: ${img !== null ? `url('http://drive.google.com/uc?export=view&id=${img}')` : `url("https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png")`};
+    transition: background-image 0.4s ease-in-out;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -42,11 +69,9 @@ function styling(img) {
       padding-left: 60px;
       max-width: 500px;
       color: white;
-      // background: green;
       padding-left: 60px;
 
       .quote  {
-        // background: red;
         font-size: 23px;
       }
 

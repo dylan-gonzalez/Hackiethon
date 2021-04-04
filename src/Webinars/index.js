@@ -6,9 +6,10 @@ import Jumbotron from './Jumbotron'
 import ContentRow from './ContentRow'
 import DetailPane from './DetailPane/DetailPane'
 import moment from "moment";
+import { descriptions } from './descriptions';
+import { videos } from './yt_videos';
 
 import { GOOGLE_API_KEY, CALENDAR_ID, CLIENT_ID } from "./config.js";
-import hoveredImg from './img/three.jpg'
 
 
 // Array of API discovery doc URLs for APIs used by the quickstart
@@ -18,9 +19,19 @@ var DISCOVERY_DOCS2 = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3
 // included, separated by spaces.
 var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/calendar.readonly';
 var SCOPES2 = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly';
-  
 
+let random_descriptions = descriptions.split(".")
+console.log("random descriptions: ", random_descriptions[1])
 let gapi = window.gapi;
+
+let initialValue = {
+  hoverImg: null
+}
+
+let valid_types = ["mp4", "png", "jpg"]
+
+console.log("JELKJFLDJ ", valid_types.includes("mp4"))
+
 
 const initialRow = {
   category: '',
@@ -38,6 +49,7 @@ const categories = [
 ]
 
 
+
 export default class Webinars extends React.Component {
   constructor(props) {
     super(props);
@@ -49,24 +61,49 @@ export default class Webinars extends React.Component {
       isEmpty: false,
       isLoading: true,
       activeRow: initialRow,
+      previewEvent: null,
+      stateChange: false
     };
     // var that = this;
 
     // this.listFiles = this.listFiles.bind(this);
   }
 
+  
+
 
   componentDidMount = async () => {
     await this.getEvents();
     await this.handleClientLoad();
 
+    
+
+    window.addEventListener("storage", this.localStorageUpdated)
+    // const ImageContext = React.useContext(initialValue);
+
+
     // setInterval(() => {
     //   this.tick();
+    //   this.componentDidMount();
     // }, 1000);
     // setInterval(() => {
     //   this.getEvents();
     // }, 60000);
   };
+
+  componentWillUnmount = () => {
+    window.removeEventListener("storage", this.localStorageUpdated);
+  }
+
+  localStorageUpdated() {
+    console.log("update")
+    if (!localStorage.getItem('hoveredImage')) {
+        this.setState({stateChange: null})
+    } 
+    else if (!this.state.status) {
+        this.setState({stateChange: true})
+    }
+}
 
   async getEvents () {
     let that = this;
@@ -79,7 +116,7 @@ export default class Webinars extends React.Component {
           scope: SCOPES
         })
         .then(function () {
-          // console.log("moment: ", moment().toISOString(), moment().endOf("year").toISOString());
+          console.log("moment: ", moment().toISOString(), moment().endOf("year").toISOString());
           gapi.auth2.getAuthInstance().signIn();
 
           console.log(gapi.client.calendar);
@@ -88,7 +125,7 @@ export default class Webinars extends React.Component {
             'timeMin': (new Date()).toISOString(),
             'showDeleted': false,
             'singleEvents': true,
-            'maxResults': 10,
+            'maxResults': 100,
             'orderBy': 'startTime'
           })
         })
@@ -291,14 +328,17 @@ export default class Webinars extends React.Component {
   listFiles = () => {
     console.log("listfiles")
     gapi.client.drive.files.list({
-      'pageSize': 20,
-      'fields': "nextPageToken, files(id, name)"
+      'pageSize': 100,
+      'fields': "nextPageToken, files(id, name)",
+      "mimeType": "image/jpeg"
     }).then((response) => {
       // this.appendPre('Files:');
       var files = response.result.files;
       console.log("Files: ", files);
       this.setState({ files: files });
-      this.add_attachments(this.state.events, this.state.files, CALENDAR_ID, "412e5g750q70fur1ni32908fa0")
+
+
+      this.add_attachments()
 
       // return files;
 
@@ -316,43 +356,174 @@ export default class Webinars extends React.Component {
   //-----------------------------------------------------
     
 
-  add_attachments = (events, driveFiles, calendarId, eventId) => {
+  changePreview = async (event) => {
+    console.log("previewEvent: ", event)
+    await this.setState({ previewEvent: event })
+    // console.log(this.state.previewEvent.attachments)
+  }
+
+  add_attachments = async () => {
     // for (let i = 0; i < events.length; i++) {
       
     // }
 
-    var event = {
-      'summary': 'Google I/O 2015',
-      'location': '800 Howard St., San Francisco, CA 94103',
-      'description': 'A chance to hear more about Google\'s developer products.',
-      'start': {
-        'dateTime': '2021-04-4T09:00:00-07:00',
-      },
-      'end': {
-        'dateTime': '2021-04-5T17:00:00-07:00',
-      },
-      'recurrence': [
-        'RRULE:FREQ=DAILY;COUNT=2'
-      ],
-      'attendees': [
-        {'email': 'lpage@example.com'},
-        {'email': 'sbrin@example.com'}
-      ],
-      'reminders': {
-        'useDefault': false,
-        'overrides': [
-          {'method': 'email', 'minutes': 24 * 60},
-          {'method': 'popup', 'minutes': 10}
-        ]
+
+    // let driveFiles = await gapi.client.drive.files.list({
+    //   'pageSize': 20,
+    //   'fields': "nextPageToken, files(id, name)"
+    // }).then((response) => {
+    //   // this.appendPre('Files:');
+    //   var files = response.result.files;
+      
+    //   console.log("files... ", files);
+    //   return files;
+    // })
+
+    // console.log("drive files: ", driveFiles);
+    let driveFiles = [];
+    for (let i = 0; i < this.state.files.length; i++){
+      // console.log(valid_types.includes(this.state.files[i].name.split(".")[1]))
+      if (valid_types.includes(this.state.files[i].name.split(".")[1])) {
+        // console.log("KJFSDFJSDFJSDFKJLSDF")
+        driveFiles.push(this.state.files[i])
       }
-    };
+    }
 
-    var request = gapi.client.calendar.events.insert({
+    console.log("Drive files: ", driveFiles)
+    if (driveFiles.length > 0) {
+      for (let i = 0; i < driveFiles.length; i++) {
+        // console.log(random_descriptions[i]);
+        
+        // console.log(driveFiles[i].id)
+        var event = {
+          'summary': `Restricted #${i}`,
+          'location': '800 Howard St., San Francisco, CA 94103',
+          'description': random_descriptions[i],
+          "start": {
+            "dateTime": "2021-04-04T07:49:37",
+            "timeZone": "America/New_York"
+          },
+          "end": {
+            "dateTime": "2021-04-5T17:00:00-07:00",
+            "timeZone": "America/New_York"
+          },
+          'attachments': [{
+            "fileId": driveFiles[i].id,
+            "fileUrl": `https://drive.google.com/file/d/${driveFiles[i].id}/view?usp=drive_web`,
+            // "fileUrl": `https://www.youtube.com/embed/${videos.items[parseInt(Math.random(0, 1) * 20)].id.videoId}`,
+            // "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/image/jpeg",
+            // "mimeType": "image/jpeg",
+            "title": driveFiles[i].name
+          }],
+
+        };
+    
+        // var request = gapi.client.calendar.events.insert({
+        //   'calendarId': CALENDAR_ID,
+        //   'supportsAttachments': true,
+        //   'resource': event,
+        //   // 'body': event
+        // })//.then(event => console.log(event.htmlLink));
+        
+        // // this.setState({ events: [] })
+        // await request.execute((event) => {
+        //   console.log(event);
+        //   this.setState({ events: [...this.state.events, event] })
+
+        // }) 
+  
+      }
+      
+    }
+
+    // console.log("request: ", request);
+    console.log((new Date()).toISOString())
+
+    gapi.client.calendar.events.list({
       'calendarId': CALENDAR_ID,
-      'resource': event
-    });
+      'timeMin': (new Date()).toISOString(),
+      'showDeleted': false,
+      'singleEvents': true,
+      'maxResults': 30,
+      'orderBy': 'startTime'
+    }).then(response =>
+      this.setState({ events: response.result.items }))
+    
+    console.log("the events: ", this.state.events)
+    
+    // console.log("here: ", this.state.events[0])
+    // console.log(response.result.items)))
 
-    console.log("request: ", request);
+    // console.log("attachments: ", this.state.events)
+
+    // // let request = gapi.client.calendar.events.list({
+    // //   'calendarId': CALENDAR_ID,
+    // //   'timeMin': (new Date()).toISOString(),
+    // // }).then(response => {
+    // //   return response.result.items[0]
+    // // })
+
+    // // console.log("request: ", request)
+
+    
+    // var event = gapi.client.calendar.events.get({
+    //   'calendarId': CALENDAR_ID,
+    //   'eventId': 'c8qmaphk75hm2b9lcooj4b9k6ti6ab9pchgm2b9pccp62oj4c5h64chl64'
+    // }).then(() => {
+    //   let attachments = {
+    //     fileId: "1U52pDk18kCpvzon7nl99cIUYGMNB_-q0",
+    //     fileUrl: "https://drive.google.com/file/d/1U52pDk18kCpvzon7nl99cIUYGMNB_-q0/view?usp=drive_web",
+    //     iconLink: "https://drive-thirdparty.googleusercontent.com/16/type/image/jpeg",
+    //     mimeType: "image/jpeg",
+    //     title: "IMG_20200929_134306.jpg"
+    //   }
+
+    //   event.attachments = attachments;
+    // }).then(() => {
+    //   gapi.client.calendar.events.patch({
+    //     'calendarId': 'primary',
+    //     'eventId': "c8qmaphk75hm2b9lcooj4b9k6ti6ab9pchgm2b9pccp62oj4c5h64chl64",
+    //     'resource': event,
+    //     // 'body': changes,
+    //     'supportsAttachments': true
+    //   }).execute(event => {
+    //     console.log(event);
+    //   })
+    // })
+
+    
+
+    // event.attachments = attachments;
+
+
+    // let changes = {
+    //   'attachments': attachments
+    // }
+
+    // var request = gapi.client.calendar.events.patch({
+    //   'calendarId': 'primary',
+    //   'eventId': "c8qmaphk75hm2b9lcooj4b9k6ti6ab9pchgm2b9pccp62oj4c5h64chl64",
+    //   'resource': event
+    //   // 'body': changes,
+    //   // 'supportsAttachments': true
+    // });
+
+    // request.execute(event => {
+    //   console.log(event);
+    // })
+
+
+    // console.log(gapi.client.calendar.events.list({
+    //   'calendarId': CALENDAR_ID,
+    //   'timeMin': (new Date()).toISOString(),
+    //   'showDeleted': false,
+    //   'singleEvents': true,
+    //   'maxResults': 10,
+    //   'orderBy': 'startTime'
+    // }).get(eventId = this.state.events[0].id))
+
+
+    
 
     // console.log("Attachments: ", events);
     // console.log(gapi.client.calendar.events.list(calendarId='primary').execute())
@@ -386,23 +557,28 @@ export default class Webinars extends React.Component {
     
     return (
       <>
+        {/* {console.log("rerender")} */}
         <Global styles={GlobalCSS} />
         <Navbar ref={navRef} />
         {/* {console.log("events: ", this.state.events)} */}
-        <Jumbotron background={hoveredImg}/>
+        {console.log("previewEvent: ", this.state.previewEvent)}
+        <Jumbotron event={this.state.previewEvent}/>
 
         {/* {console.log(categories)} */}
 
         <div className="all-content-wrapper">
-          {categories.slice(0).map(category => (
-            <ContentRow key={category} category={category} events={this.state.events} setActive={this.setActive} />
+          {console.log(categories.slice(0))
+          }
+          {categories.slice(0).map((category, index) => (
+            <ContentRow key={category} category={category} changePreview={this.changePreview} events={this.state.events.slice(index*10, index*10 + 10)} setActive={this.setActive} />
           ))}
         </div>
 
         <DetailPane
           category={category}
           top={bottom + window.scrollY}
-          setActive={this.setActive }
+          setActive={this.setActive}
+          event = {this.state.previewEvent}
         />
         <Footer />
       </>
@@ -593,7 +769,6 @@ const GlobalCSS = css`
 
   .all-content-wrapper {
     position: relative;
-    // background: green;
     margin-top: 67vh;
   }
 `
