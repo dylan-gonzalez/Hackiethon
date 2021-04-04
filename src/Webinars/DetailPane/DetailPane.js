@@ -1,14 +1,14 @@
 /** @jsxRuntime classic */
 
 /** @jsx jsx */
-import React, { useState, useEffect, createRef } from 'react'
+import { useState, useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
 import DetailPaneNav from './DetailPaneNav'
 import Overview from './Overview'
 import Episodes from './Episodes'
 import Details from './Details'
 import Icon from '../Icon'
-import logo from '.././img/logo.png'
+// import logo from '.././img/logo.png'
 
 const TABS = ['Overview', 'Episodes', 'Details']
 
@@ -17,11 +17,12 @@ const TABS = ['Overview', 'Episodes', 'Details']
  */
 const DetailPane = (props) => {
   const [tab, setTab] = useState()
-  const navRef = createRef()
-
-  useEffect(() => {
-    setTab(TABS[0])
-  }, [!props.category])
+  // const navRef = createRef()
+  // const category = props.category;
+  
+  // useEffect(() => {
+  //   setTab(TABS[0])
+  // }, [!props.category])
 
   useEffect(() => {
     if (!props.category) return
@@ -34,7 +35,7 @@ const DetailPane = (props) => {
       left: 0,
       behavior: 'smooth'
     })
-  }, [props.category]);
+  });
 
   return (
     props.category && (
@@ -47,7 +48,7 @@ const DetailPane = (props) => {
         ]}
       >
         <div className="pane-wrapper">
-          <img
+          <img alt = "test"
             css={css`
               max-width: ${tab === 'Overview' ? 375 : 175}px;
             `}

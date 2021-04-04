@@ -14,7 +14,7 @@ export const wrapState = (stateVar) => ({
 const ContentBlock = (props) => {
   const [hovered, setHovered] = useState(false)
 
-  const handleHover = useCallback(e => {
+  const handleHover = (e) => {
     // console.log(props.event);
     if (e.type === "mouseenter") {
       props.hoverContentBlock(props.event);
@@ -25,7 +25,7 @@ const ContentBlock = (props) => {
       setHovered(false);
     }
 
-  }, [])
+  }
 
 
   return (
@@ -41,7 +41,7 @@ const ContentBlock = (props) => {
       {props.event.attachments[0].fileId === hovered && <div className="content">{props.children}</div>}
       {/* {console.log(props.event.attachments[0].title, props.event.attachments[0].fileUrl)} */}
       {/* {props.event.attachments[0].title.split(".")[1] === "mp4" ? console.log(props.event.attachments[0].title.split(".")[1]) : console.log("false")} */}
-      {props.event.attachments[0].title.split(".")[1] === "mp4" ? <iframe src={`https://drive.google.com/file/d/${props.event.attachments[0].fileId}/preview`} allow="autoplay"></iframe>  :
+      {props.event.attachments[0].title.split(".")[1] === "mp4" ? <iframe title = "iframe" src={`https://drive.google.com/file/d/${props.event.attachments[0].fileId}/preview`} allow="autoplay"></iframe>  :
         (props.event.attachments[0].fileId === null
           ? <img src="" alt='random webinar' />
           : <img src={`https://drive.google.com/thumbnail?id=${props.event.attachments[0].fileId}`} alt='random webinar' />)

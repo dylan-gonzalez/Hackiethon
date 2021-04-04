@@ -3,9 +3,9 @@
 import React, { useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
 import Button from './Button'
-import wallpaper from './img/wallpaper.jpg'
+// import wallpaper from './img/wallpaper.jpg'
 
-import { wrapState } from './ContentBlock.js';
+// import { wrapState } from './ContentBlock.js';
 
 // import handleHover from './ContentBlock.js'
 
@@ -14,9 +14,9 @@ import { wrapState } from './ContentBlock.js';
  */
 const Jumbotron = (props) => {
 
-  useEffect(() => {
-    // console.log(event);
-  })
+  // useEffect(() => {
+  //   // console.log(event);
+  // })
   // const [bgImg, setBgImg] = React.useState(null);
 
   // test(() => {
@@ -34,9 +34,8 @@ const Jumbotron = (props) => {
   // }, 3000)
 
   return (
-    <>
-        {/* {console.log(props.event.attachments)} */}
-
+   
+ 
   <div css={props.event !== null ? (props.event.attachments !== undefined && styling(props.event.attachments[0].fileId)) : styling(null)}>
     <div className="synopsis">
       {/* <img src={logo} /> */}
@@ -48,8 +47,7 @@ const Jumbotron = (props) => {
       <Button icon="info-circle">More Info</Button>
     </div>
 
-      </div>
-      </>
+    </div>
   )
 }
 

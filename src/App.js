@@ -1,14 +1,14 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import Conversations from '@twilio/conversations';
 import {
   Route,
-  NavLink,
+  // NavLink,
   Switch,
   HashRouter
 } from "react-router-dom";
 
 import LoginForm from './LoginForm/index.js';
-import ChatRooms from './ChatRooms/index.js';
+// import ChatRooms from './ChatRooms/index.js';
 import ChatLog from './ChatLog/index.js';
 import ChatInput from './ChatInput/index.js';
 import Sidebar from './Sidebar';
@@ -17,14 +17,14 @@ import UserProfile from './UserProfile';
 
 import './App.css';
 import Webinars from './Webinars/index.js';
-import Navbar from './Navbar/index.js';
+// import Navbar from './Navbar/index.js';
 
 export const ChatContext = React.createContext();
 
 function App() {
   const [user, setUser] = React.useState({api: null, username: null, chatrooms: [], classrooms: []});
   const [selectedChatroom, setSelectedChatroom] = React.useState(null);
-  const [showProfile, setShowProfile] = React.useState(false);
+  // const [showProfile, setShowProfile] = React.useState(false);
 
   const chatData = {
     user: user,

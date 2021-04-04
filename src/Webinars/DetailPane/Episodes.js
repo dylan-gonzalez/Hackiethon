@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 
 /** @jsx jsx */
-import React from 'react'
+// import React from 'react'
 import { css, jsx } from '@emotion/core'
 import ContentBlock from '../ContentBlock'
 import Icon from '../Icon'
