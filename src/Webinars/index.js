@@ -8,6 +8,7 @@ import DetailPane from './DetailPane/DetailPane'
 import moment from "moment";
 
 import { GOOGLE_API_KEY, CALENDAR_ID, CLIENT_ID } from "./config.js";
+import hoveredImg from './img/three.jpg'
 
 
 // Array of API discovery doc URLs for APIs used by the quickstart
@@ -27,13 +28,13 @@ const initialRow = {
 }
 
 const categories = [
-  'TV Shows',
-  'Action',
-  'Drama',
-  'Comedy',
-  'Documentary',
-  'Sci-Fi',
-  'Reality'
+  'Quantum Mechanics',
+  'Calculus',
+  'Geogrpahy',
+  'Urban Design',
+  'Principles of Business Law',
+  'Foundations of Python',
+  'Advanced CSS'
 ]
 
 
@@ -388,17 +389,16 @@ export default class Webinars extends React.Component {
         <Global styles={GlobalCSS} />
         <Navbar ref={navRef} />
         {/* {console.log("events: ", this.state.events)} */}
-        <Jumbotron>
-          
-          <ContentRow category={categories[0]} events={this.state.events} setActive={this.setActive} />
-        </Jumbotron>
+        <Jumbotron background={hoveredImg}/>
 
         {/* {console.log(categories)} */}
-  
-        {categories.slice(0).map(category => (
-          <ContentRow key={category} category={category} events={this.state.events} setActive={this.setActive} />
-        ))}
-  
+
+        <div className="all-content-wrapper">
+          {categories.slice(0).map(category => (
+            <ContentRow key={category} category={category} events={this.state.events} setActive={this.setActive} />
+          ))}
+        </div>
+
         <DetailPane
           category={category}
           top={bottom + window.scrollY}
@@ -589,5 +589,11 @@ const GlobalCSS = css`
     font-size: 18.5px;
     cursor: pointer;
     color: white;
+  }
+
+  .all-content-wrapper {
+    position: relative;
+    // background: green;
+    margin-top: 67vh;
   }
 `

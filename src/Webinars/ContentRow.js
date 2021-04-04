@@ -16,16 +16,6 @@ import six from './img/six.jpg'
 
 const content = [one, two, three, four, five, six] //images from the gapi call
 
-// function panLeft() {
-//   var elmnt = getElementById("vids")
-//   elmnt.scrollLeft = 50;
-// }
-
-// function panRight() {
-//   var elmnt = document.getElementById("vids")
-//   elmnt.scrollLeft = -50;
-// }
-
 
 
 /**
@@ -37,23 +27,14 @@ const ContentRow = ({ category, setActive, events }) => {
     setActive({ category, pos })
   }, [])
 
-  // useEffect(() => {
-  //     var elem = document.getElementById('slide-left');
-  //     elem.onclick = function() {
-  //       var lol = document.getElementById('vid-container')
-  //       lol.style.background = 'yellow';
-  //       lol.style.left += 300 ;
-  //   }
-  // });
 
   return (
     <div
       className="ContentRow"
       css={css`
         padding-left: 120px;
-        // overflow-x: hidden;
         display: flex;
-        justify-content: center;
+        justify-content: start;
 
         .ContentBlock {
           display: flex;
@@ -69,42 +50,22 @@ const ContentRow = ({ category, setActive, events }) => {
             color: white;
           }
 
-          .row-container {
-            display: flex;
-          }
-
           .block-wrapper {
             display: flex;
             flex-direction: row;
-            width: 800px;
             position: relative;
-            // overflow-x: scroll;
-          }
+            overflow-x: scroll;
 
-          .block-wrapper {
-            display: flex;
             width: 100%;
-            height: 250px;
+            height: 170px;
 
             position: relative;
           }
         `}
       >
         <h2>{category}</h2>
-        
-        <div class="row-container">
-
-          {/* <button id="slide-left">Scroll Left</button> */}
-          <div id="vid-container">
-            <h3>gd morning</h3>
-          </div>
-
-        {/* <div class="row-container"> */}
-
-          {/* <button id="slide-left">Scroll Left</button> */}
-          <div id="vid-container">
           
-          <div className="block-wrapper">
+        <div className="block-wrapper">
 
           {events.map(event => {
             // { console.log("attachment: ", event.summary) }
@@ -112,15 +73,12 @@ const ContentRow = ({ category, setActive, events }) => {
             <ContentBlock  img={event.attachments !== undefined ? event.attachments[0].fileUrl : null}>
               <Icon type="play" />
               <Icon type="info-circle" onClick={getPos} />
-              </ContentBlock>
+            </ContentBlock>
             )
           })}
-          </div>
-
-          </div>
-          {/* <button id="slide-right" onclick={panRight()}>Scroll Right</button> */}
         </div>
-      {/* </div> */}
+
+      </div>
     </div>
   )
 }

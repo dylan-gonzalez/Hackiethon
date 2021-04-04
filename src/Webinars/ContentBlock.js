@@ -12,6 +12,7 @@ const ContentBlock = ({ children, img }) => {
   const handleHover = useCallback(e => {
     e.type === 'mouseenter'
       ? setHovered(e.target.getAttribute('data-img'))
+        
       : setHovered(false)
   }, [])
 
@@ -25,10 +26,10 @@ const ContentBlock = ({ children, img }) => {
     > 
       {/* {console.log("HERE: ", img.split("/")[5])} */}
       {img === hovered && <div className="content">{children}</div>}
-      {img === null ? 
-        <img src="" />
-        : <img src={`https://drive.google.com/thumbnail?id=${img.split("/")[5]}`} />
-    }
+      {img === null 
+        ? <img src="" alt='random webinar' />
+        : <img src={`https://drive.google.com/thumbnail?id=${img.split("/")[5]}`} alt='random webinar' />
+      }
      
     </div>
     
