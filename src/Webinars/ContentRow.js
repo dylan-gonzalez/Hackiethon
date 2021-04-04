@@ -88,7 +88,9 @@ const ContentRow = ({ category, setActive, events }) => {
         <div class="row-container">
 
           {/* <button id="slide-left">Scroll Left</button> */}
-          <div id="vid-container"></div>
+          <div id="vid-container">
+            <h3>gd morning</h3>
+          </div>
 
         <div className="block-wrapper">
           {/* {content.map(img => ( */}
@@ -102,6 +104,7 @@ const ContentRow = ({ category, setActive, events }) => {
               </ContentBlock>
             )
           })}
+          <h2>HELLLOOOo</h2>
             
           {/* ))} */}
 

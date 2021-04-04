@@ -38,6 +38,7 @@ const Navbar = forwardRef((props, ref) => {
               //   rgba(0, 0, 0, 0.7) 10%,
               //   rgba(0, 0, 0, 0)
               // );
+              // background-color: black;
             `
           : css`
               background: transparent;
@@ -48,8 +49,7 @@ const Navbar = forwardRef((props, ref) => {
         <li>
           <a href="/#/webinars" class="nav-title">
             <h2>Seminars</h2>
-          </a>
-          
+          </a>          
         </li>
 
         {leftLinks.map(link => (
@@ -81,6 +81,7 @@ const NavbarCSS = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0px;
   .nav-title {
     font-size: 30px;
   }

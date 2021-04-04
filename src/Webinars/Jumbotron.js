@@ -41,10 +41,11 @@ const JumbotronCSS = css`
     padding-left: 60px;
     max-width: 500px;
     color: white;
+    background: green;
     padding-left: 60px;
 
     .quote  {
-      background: red;
+      // background: red;
       font-size: 23px;
     }
 
@@ -60,7 +61,7 @@ const JumbotronCSS = css`
 
   .ContentRow {
     position: absolute;
-    background-color: green;
+    // background-color: green;
     bottom: 20px;
   }
 `
