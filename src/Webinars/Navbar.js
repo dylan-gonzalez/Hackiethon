@@ -5,7 +5,7 @@ import { css, /*jsx*/ } from '@emotion/core';
 import { jsx } from '@emotion/react';
 import Icon from './Icon'
 
-const leftLinks = ['PHysics', 'TV Shows', 'Movies', 'Latest', 'My List']
+const leftLinks = ['Upcoming', 'Previous', 'Recurring', 'Tutorials', 'Favourites']
 
 /**
  * @function Navbar
@@ -38,10 +38,13 @@ const Navbar = forwardRef((props, ref) => {
               //   rgba(0, 0, 0, 0.7) 10%,
               //   rgba(0, 0, 0, 0)
               // );
-              // background-color: black;
+              background-color: #151515;
+              margin-top : 0px;
+              transition-duration: 0.3s;
             `
           : css`
               background: transparent;
+              transition-duration: 0.3s;
             `
       ]}
     >
@@ -53,7 +56,7 @@ const Navbar = forwardRef((props, ref) => {
         </li>
 
         {leftLinks.map(link => (
-          <li key={link}>
+          <li className="left-link" key={link}>
             <a href="/#/webinars">{link}</a>
           </li>
         ))}
@@ -72,8 +75,8 @@ const Navbar = forwardRef((props, ref) => {
 })
 
 const NavbarCSS = css`
-  // position: static;
   position: fixed;
+  top: 0;
   height: 90px;
   z-index: 99;
   width: 100%;
@@ -84,27 +87,29 @@ const NavbarCSS = css`
   margin: 0px;
   .nav-title {
     font-size: 30px;
+    letter-spacing: 2px;
   }
   ul {
     display: flex;
     align-items: center;
-    // background: green;
-    // color: red;
     height: 100%;
     margin: 50px;
     color: red;
   }
   li {
-    margin-right: 30px;
+    margin: 20px;
   }
-  a {
-    font-size: 17px;
-    letter-spacing: 1px;
-    // color: #e5e5e5;
+  .left-link {
+    a {
+      font-size: 18px;
+      letter-spacing: 2px;
+      transition-duration: 0.2s;
+    }
   }
-  a.active {
-    // color: white;
-    font-weight: 500;
+  .left-link:hover {
+    a {
+      color: rgb(170, 230, 256);
+    }
   }
   ul.right {
     .Icon {

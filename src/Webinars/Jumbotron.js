@@ -16,8 +16,8 @@ const Jumbotron = ({ background }) => (
       {/* <img src={logo} /> */}
 
       <p class="quote">
-      “He who learns but does not think, is lost! 
-      He who thinks but does not learn, is in great danger.” – Confucius
+      "You don't want lack of experience. 
+      Therefore you go watch some seminars mate." - Speedy Gonzo
       </p>
 
       <Button icon="play">Play</Button>
@@ -42,12 +42,11 @@ function styling(img) {
       padding-left: 60px;
       max-width: 500px;
       color: white;
-      // background: green;
       padding-left: 60px;
 
       .quote  {
-        // background: red;
         font-size: 23px;
+        letter-spacing: 1px;
       }
 
     .Icon {
@@ -55,16 +54,15 @@ function styling(img) {
         font-size: 18px;
       }
 
+      Button {
+        transition-duration: 0.2s;
+      }
+
       Button:hover {
-        color: red;
+        color: rgb(150, 250, 200);
       }
     }
 
-    // .ContentRow {
-    //   position: absolute;
-    //   // background-color: green;
-    //   bottom: 20px;
-    // }
   `
 }
 export default Jumbotron

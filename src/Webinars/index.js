@@ -8,7 +8,7 @@ import DetailPane from './DetailPane/DetailPane'
 import moment from "moment";
 
 import { GOOGLE_API_KEY, CALENDAR_ID, CLIENT_ID } from "./config.js";
-import hoveredImg from './img/three.jpg'
+import hoveredImg from './img/IMG_1461.jpg'
 
 
 // Array of API discovery doc URLs for APIs used by the quickstart

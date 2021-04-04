@@ -23,26 +23,24 @@ function LoginForm(props) {
     return (
       
       <div id="login">
-        <h1>Twilio Conversations API Demo</h1>
-        <div>
-          Username:&nbsp;
-          <input type="text" ref={userInput} onKeyUp={login} autoFocus />
-          &nbsp;
-          <button onClick={login}>Login</button>
-          {error && <>&nbsp;Login error, please try again.</>}
-        </div>
+        <h1 className="login">Syntax Chats</h1>
+        <h2 className="title-text">Where motivation comes first.</h2>
+        
+        <input placeholder="Enter your username" id="login-input" type="text" ref={userInput} onKeyUp={login} autoFocus />
+        <button id="login-button" onClick={login}>Login</button>
+        {error && <>&nbsp;Login error, please try again.</>}
+        
       </div>
     );
   }
   else {
     return (
-      <div id="login">
-        <h1>Twilio Conversations API Demo</h1>
+      <div id="login-details">
+        <h1>Speedy Chatrooms</h1>
 
-        <div>
-          Username: <b>{chatData.user.username}</b>&nbsp;
-          {/* {props.history.location.pathname === "/webinars" ? '' : <button onClick={logout}>Logout</button>} */}
-          <button onClick={logout}>Logout</button>
+        <div className="username">
+          <b id="username">{chatData.user.username}</b>
+          <button id="logout" onClick={logout}>Logout</button>
         </div>
       </div>
     );
@@ -50,11 +48,3 @@ function LoginForm(props) {
 }
 
 export default LoginForm;
-
-const LoginCSS = css`
-  .but {
-    position:fixed;
-    color:red;
-    font-size: 100px;
-  }
-`
